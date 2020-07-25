@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   root to: "pages#root"
   get 'room', to: "pages#room"
   resources :video_search, only: :index
+  resources :playlists
 end

@@ -1,0 +1,9 @@
+{
+  id: @playlist.id,
+  room_id: @playlist.room_id,
+  video_id: @playlist.video_id,
+  title: @playlist.title,
+  user_name: @playlist.user_name,
+  created_at: @playlist.created_at,
+  updated_at: @playlist.updated_at
+}

@@ -4,6 +4,7 @@
             title: video.title,
             thumbnail_url: video.thumbnail_url,
             channel_title: video.channel_title,
-            published_at: video.published_at.to_date
+            published_at: video.published_at.to_date,
+            runtime: video.length.delete_prefix('00:')
     }
 end

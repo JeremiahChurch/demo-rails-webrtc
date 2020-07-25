@@ -12,6 +12,11 @@ export default class extends Controller {
     this.channel = createDemoChannel("my-room", this.connection)
   }
 
+  connect() {
+    console.log("hello from root controller")
+    this.element[this.identifier] = this // reference the stim controller https://leastbad.com/stimulus-power-move
+  }
+
   getUserMedia() {
     navigator.mediaDevices.getUserMedia({
       audio: true,

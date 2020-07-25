@@ -1,9 +1,9 @@
-.container.mt-4[data-controller="room"]
+.container.mt-4 data-controller="room"
   .row
     .col.d-flex.flex-column.align-items-center
       .col.bg-primary.text-white.text-center.mb-4 data-target='room.videoName'
         | Local Video
-      video[height="240" data-target="room.main" autoplay playsinline]
+      video height="240" data-target="room.main" autoplay playsinline data-target='playlist.localVideo'
     .col.d-flex.flex-column.align-items-center
       .col.bg-dark.text-white.text-center.mb-4
         | Remote Video
@@ -15,10 +15,64 @@
       button.btn.btn-light.ml-4[data-action="room#joinRoom"]
         | Join Room
 
-  .container
-    .row.justify-content-center data-controller='search'
+  .row
+    #playlist.col data-controller='playlist'
+      iframe.d-none width='640' height='390' frameborder='0' data-target='playlist.youtube' id='youtube'
+      h4 Playlist
+      =<> button_tag type: 'button', class: "btn btn-primary", data: {action: "playlist#play"}
+        | Play
+      =<> button_tag type: 'button', class: "btn btn-primary", data: {action: "playlist#pause"}
+        | Pause
+      #playlist-results data-target='playlist.results'
+        | Loading
+    .col.justify-content-center data-controller='search'
       = form_with(url: "/", method: :get, data: {action: "submit->search#submit"}) do |f|
         = label_tag(:q, "Search for Video")
         = text_field_tag :q, params[:q], data: {target: "search.query"}
         = submit_tag("Search", class: "btn btn-primary")
-      #search-results data-target='search.cocktails'
+      #search-results data-target='search.results'
+javascript:
+  var tag = document.createElement('script');
+  tag.id = 'iframe-demo';
+  tag.src = 'https://www.youtube.com/iframe_api';
+  var firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+  var player;
+
+  function onYouTubeIframeAPIReady() {
+    player = new YT.Player('youtube', {
+      events: {
+        'onReady': onPlayerReady,
+        'onStateChange': onPlayerStateChange
+      }
+    });
+  }
+
+  function onPlayerReady(event) {
+    document.getElementById('existing-iframe-example').style.borderColor = '#FF6D00';
+  }
+
+  function changeBorderColor(playerStatus) {
+    var color;
+    if (playerStatus == -1) {
+      color = "#37474F"; // unstarted = gray
+    } else if (playerStatus == 0) {
+      color = "#FFFF00"; // ended = yellow
+    } else if (playerStatus == 1) {
+      color = "#33691E"; // playing = green
+    } else if (playerStatus == 2) {
+      color = "#DD2C00"; // paused = red
+    } else if (playerStatus == 3) {
+      color = "#AA00FF"; // buffering = purple
+    } else if (playerStatus == 5) {
+      color = "#FF6DOO"; // video cued = orange
+    }
+    if (color) {
+      document.getElementById('existing-iframe-example').style.borderColor = color;
+    }
+  }
+
+  function onPlayerStateChange(event) {
+    changeBorderColor(event.data);
+  }

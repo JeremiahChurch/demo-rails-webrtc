@@ -10,12 +10,17 @@ export default class extends Controller {
     this.connection = new Connection
     this.connection.remoteStreamTarget = this.remoteTarget
     this.channel = createDemoChannel("my-room", this.connection)
+  }
+
+  connect () {
+    console.log("hello from room controller")
+    this.element[this.identifier] = this // reference the stim controller https://leastbad.com/stimulus-power-move
 
     console.log(getCookie('name'))
     this.videoNameTarget.innerHTML = `You (${getCookie('name')})`
 
-    this.getUserMedia()
-    this.joinRoom()
+    //this.getUserMedia()
+    //this.joinRoom()
   }
 
   getUserMedia() {
