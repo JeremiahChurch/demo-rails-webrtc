@@ -14,7 +14,7 @@ export default class extends Controller {
 
   getUserMedia() {
     navigator.mediaDevices.getUserMedia({
-      audio: false,
+      audio: true,
       video: true
     }).then((stream) => {
       this.connection.localStream = stream
