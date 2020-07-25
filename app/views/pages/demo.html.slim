@@ -1,0 +1,24 @@
+.container.mt-4[data-controller="demo"]
+  .row
+    .col.d-flex.flex-column.align-items-center
+      .col.bg-primary.text-white.text-center.mb-4
+        | Local Video
+      video[height="240" data-target="demo.main" autoplay playsinline]
+    .col.d-flex.flex-column.align-items-center
+      .col.bg-dark.text-white.text-center.mb-4
+        | Remote Video
+      video[height="240" data-target="demo.remote" autoplay playsinline]
+  .row.mt-4
+    .col
+      button.btn.btn-light[data-action="demo#getUserMedia"]
+        | Get Video
+      button.btn.btn-light.ml-4[data-action="demo#joinRoom"]
+        | Join Room
+
+  .container
+    .row.justify-content-center data-controller='search'
+      = form_with(url: "/", method: :get, data: {action: "submit->search#submit"}) do |f|
+        = label_tag(:q, "Search for Video")
+        = text_field_tag :q, params[:q], data: {target: "search.query"}
+        = submit_tag("Search", class: "btn btn-primary")
+      #search-results data-target='search.cocktails'

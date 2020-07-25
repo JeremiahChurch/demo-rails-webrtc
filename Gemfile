@@ -9,10 +9,15 @@ gem 'puma', '~> 4.1'
 gem 'sass-rails', '>= 6'
 gem 'webpacker', '~> 4.0'
 gem 'turbolinks', '~> 5'
-gem 'jbuilder', '~> 2.7'
+# gem 'jbuilder', '~> 2.7'
+gem 'jb' # jbuilder replacement
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'twilio-ruby'
 gem 'redis', '~> 4.0'
+gem 'slim-rails'
+
+
+gem 'yt'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
