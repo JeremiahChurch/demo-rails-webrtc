@@ -1,4 +1,7 @@
 class PagesController < ApplicationController
-  def demo
+  def room
+  end
+
+  def root
   end
 end

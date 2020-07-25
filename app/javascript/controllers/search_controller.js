@@ -31,7 +31,7 @@ export default class extends Controller {
 
   cocktailTemplate(cocktail) {
     return `<div>
-    <img src="${cocktail.thumbnail_url}"/><h4>${cocktail.title} <small>${cocktail.channel_title} ${cocktail.published_at}</small></h4>
+    <img src="${cocktail.thumbnail_url}"/><h4>${cocktail.title} <small> - ${cocktail.channel_title} ${cocktail.published_at}</small></h4>
     </div> `
   }
 }

@@ -1,18 +1,18 @@
-.container.mt-4[data-controller="demo"]
+.container.mt-4[data-controller="room"]
   .row
     .col.d-flex.flex-column.align-items-center
-      .col.bg-primary.text-white.text-center.mb-4
+      .col.bg-primary.text-white.text-center.mb-4 data-target='room.videoName'
         | Local Video
-      video[height="240" data-target="demo.main" autoplay playsinline]
+      video[height="240" data-target="room.main" autoplay playsinline]
     .col.d-flex.flex-column.align-items-center
       .col.bg-dark.text-white.text-center.mb-4
         | Remote Video
-      video[height="240" data-target="demo.remote" autoplay playsinline]
-  .row.mt-4
+      video[height="240" data-target="room.remote" autoplay playsinline]
+  /.row.mt-4
     .col
-      button.btn.btn-light[data-action="demo#getUserMedia"]
+      button.btn.btn-light[data-action="room#getUserMedia"]
         | Get Video
-      button.btn.btn-light.ml-4[data-action="demo#joinRoom"]
+      button.btn.btn-light.ml-4[data-action="room#joinRoom"]
         | Join Room
 
   .container

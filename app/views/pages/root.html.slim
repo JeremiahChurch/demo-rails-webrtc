@@ -1,0 +1,23 @@
+.container.mt-4[data-controller="root"]
+  .row
+    .col.d-flex.flex-column.align-items-center
+      .col.bg-primary.text-white.text-center.mb-4
+        | Local Video
+      video[height="240" data-target="root.main" autoplay playsinline]
+    .d-none.col.flex-column.align-items-center
+      .col.bg-dark.text-white.text-center.mb-4
+        | Remote Video
+      video[height="0" data-target="root.remote" autoplay playsinline]
+  .row.mt-4
+    .col
+      button.btn.btn-light[data-action="root#getUserMedia"]
+        | Test Video
+      /button.btn.btn-light.ml-4[data-action="root#joinRoom"]
+        | Join Room
+  .row.mt-4
+    .col
+      => label_tag(:name, "Your Name")
+      = text_field_tag :name, session[:name], data: {target: "root.name"}
+      .container data-target='root.error'
+      button.btn.btn-light.ml-4[data-action="root#joinRoom"]
+        | Join Room
