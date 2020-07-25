@@ -59,4 +59,26 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+  # whitelist testing domain
+  config.hosts << 'app.test'
+  config.hosts << 'admin.app.test'
+  config.hosts << 'www.app.test'
+  config.hosts << 'ffb.app.test'
+  config.hosts << 'ffb-admin.app.test'
+  config.hosts << 'other.app.test'
+  config.hosts << 'junk.app.test'
+  config.hosts << 'other-admin.app.test'
+
+  config.hosts << 'lvh.me'
+  config.hosts << 'admin.lvh.me'
+  config.hosts << 'www.lvh.me'
+  config.hosts << 'ffb.lvh.me'
+  config.hosts << 'ffb-admin.lvh.me'
+  config.hosts << 'other.lvh.me'
+  config.hosts << 'junk.lvh.me'
+  config.hosts << 'other-admin.lvh.me'
+
+  config.web_console.permissions = '0.0.0.0/0'
+  config.consider_all_requests_local = true
 end
