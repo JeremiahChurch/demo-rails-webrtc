@@ -40,16 +40,24 @@ export default class extends Controller {
     })
   }
 
+  removeID(id) {
+    fetch(`playlists/${id}`, {
+      method: 'DELETE',
+      credentials: 'same-origin',
+      headers: {
+        'X-CSRF-Token': getMetaValue('csrf-token'),
+        'content-type': 'application/json',
+        accept: 'application/json',
+      },
+    }).then(() => {
+      this.getPlaylist()
+    })
+  }
+
   play() {
     console.log('play')
     //console.log(player)
-
     player.playVideo()
-    // if(!this.videoActive()) {
-    //   this.youtubeTarget.removeClass('d-none')
-    //   this.localVideoTarget.addClass('d-none')
-    //  // this.youtubeTarget.src = `http://www.youtube.com/embed/${}?enablejsapi=1&autoplay=1`
-    // }
   }
 
   pause() {
@@ -57,8 +65,17 @@ export default class extends Controller {
     player.pauseVideo()
   }
 
-  videoActive() {
-    !this.youtubeTarget.hasClass('d-none')
+  next() {
+    fetch('playlists', {
+      headers: {accept: 'application/json'}
+    }).then((response) => response.json())
+      .then(data => {
+        const firstVideo = data[0]
+        console.log(firstVideo)
+        player.loadVideoById(firstVideo['video_id'])
+        player.playVideo()
+        this.removeID(firstVideo['id'])
+      });
   }
 
   resultTemplate(result) {

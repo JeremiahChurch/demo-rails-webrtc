@@ -31,6 +31,8 @@
                 | Play
               =<> button_tag type: 'button', class: "btn btn-primary", data: {action: "playlist#pause"}
                 | Pause
+              =<> button_tag type: 'button', class: "btn btn-primary", data: {action: "playlist#next"}
+               | Next Song
             #playlist-results data-target='playlist.results'
               | Loading
       .row.h-25
