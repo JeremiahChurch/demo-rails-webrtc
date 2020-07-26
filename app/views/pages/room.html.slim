@@ -74,7 +74,9 @@ javascript:
   }
 
   function onPlayerReady(event) {
-    document.getElementById('existing-iframe-example').style.borderColor = '#FF6D00';
+    console.log('calling start play!')
+    console.log(event.target)
+    event.target.playVideo();
   }
 
   function changeBorderColor(playerStatus) {
@@ -93,7 +95,7 @@ javascript:
       color = "#FF6DOO"; // video cued = orange
     }
     if (color) {
-      document.getElementById('existing-iframe-example').style.borderColor = color;
+      document.getElementById('youtube').style.borderColor = color;
     }
   }
 

@@ -42,11 +42,14 @@ export default class extends Controller {
 
   play() {
     console.log('play')
-    if(!this.videoActive()) {
-      this.youtubeTarget.removeClass('d-none')
-      this.localVideoTarget.addClass('d-none')
-     // this.youtubeTarget.src = `http://www.youtube.com/embed/${}?enablejsapi=1&autoplay=1`
-    }
+    //console.log(player)
+
+    player.playVideo()
+    // if(!this.videoActive()) {
+    //   this.youtubeTarget.removeClass('d-none')
+    //   this.localVideoTarget.addClass('d-none')
+    //  // this.youtubeTarget.src = `http://www.youtube.com/embed/${}?enablejsapi=1&autoplay=1`
+    // }
   }
 
   pause() {
