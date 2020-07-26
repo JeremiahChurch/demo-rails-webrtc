@@ -19,8 +19,7 @@ export default class extends Controller {
     console.log(getCookie('name'))
     this.videoNameTarget.innerHTML = `You (${getCookie('name')})`
 
-    //this.getUserMedia()
-    //this.joinRoom()
+    this.getUserMedia()
   }
 
   getUserMedia() {
@@ -31,6 +30,8 @@ export default class extends Controller {
       this.connection.localStream = stream
       this.mainTarget.srcObject = stream
       this.channel.send({type: "TOKEN"})
+      console.log(this.mainTarget.srcObject)
+      this.joinRoom()
     })
   }
 

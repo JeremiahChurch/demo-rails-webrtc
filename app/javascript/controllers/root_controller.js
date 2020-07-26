@@ -9,7 +9,7 @@ export default class extends Controller {
     super(props)
     this.connection = new Connection
     this.connection.remoteStreamTarget = this.remoteTarget
-    this.channel = createDemoChannel("my-room", this.connection)
+    //this.channel = createDemoChannel("my-room", this.connection)
   }
 
   connect() {
@@ -24,7 +24,7 @@ export default class extends Controller {
     }).then((stream) => {
       this.connection.localStream = stream
       this.mainTarget.srcObject = stream
-      this.channel.send({type: "TOKEN"})
+      //this.channel.send({type: "TOKEN"})
     })
   }
 
