@@ -7,7 +7,6 @@ export default class extends Controller {
     console.log("hello from playlist controller")
     this.element[this.identifier] = this // reference the stim controller https://leastbad.com/stimulus-power-move
     this.getPlaylist()
-    this.next();
   }
 
   getPlaylist() {
@@ -15,9 +14,6 @@ export default class extends Controller {
       headers: {accept: 'application/json'}
     }).then((response) => response.json())
       .then(data => {
-        if (data[0]) {
-          this.nextSong = data[0]
-        }
         var resultHTML = "";
         var resultArray = Object.values(data)
         resultArray.forEach(result => {
@@ -27,6 +23,9 @@ export default class extends Controller {
           resultHTML = 'No videos on playlist - please add more by searching and adding'
         }
         this.resultsTarget.innerHTML = resultHTML;
+        if (data[0]) {
+          this.nextSong = data[0]
+        }
       });
   }
 
