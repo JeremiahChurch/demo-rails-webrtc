@@ -20,7 +20,7 @@ export default class extends Controller {
           resultHTML += this.resultTemplate(result)
         });
         if (resultHTML === '') {
-          resultHTML = 'No videos on playlist - please add more by searching and adding'
+          resultHTML = 'No songs on playlist - please add more by searching and adding'
         }
         this.resultsTarget.innerHTML = resultHTML;
         if (data[0]) {

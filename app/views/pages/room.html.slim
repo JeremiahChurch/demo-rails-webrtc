@@ -7,6 +7,7 @@
           iframe frameborder='0' id='youtube' src="https://www.youtube.com/embed/Sw-H1zXMfEM?enablejsapi=1&autoplay=1"
       .row.h-25
         .col-sm-12
+          h4 Your Audience
           /! Button for information
             /.col.bg-primary.text-white.text-center.mb-4 data-target='room.videoName'
               | Local Video
@@ -18,9 +19,9 @@
         .col-sm-12
           .col.justify-content-center data-controller='search'
             = form_with(url: "/", method: :get, data: {action: "submit->search#submit"}) do |f|
-              = label_tag(:q, "Search for Video")
-              = text_field_tag :q, params[:q], data: {target: "search.query"}
-              = submit_tag("Search", class: "btn btn-primary")
+              => label_tag(:q, "Search for Song")
+              =<> text_field_tag :q, params[:q], data: {target: "search.query"}
+              =<> submit_tag("Search", class: "btn btn-primary")
             #search-results data-target='search.results'
       .row.h-50
         .col-sm-12
@@ -53,9 +54,9 @@
                           = message.created_at
           = form_with(url: "#", method: :get, data: {action: "submit->chat#submit"}) do |f|
             .input-group.mb-3
-              = text_field_tag :message, nil, class: 'chat-input'
+              =<> text_field_tag :message, nil, class: 'chat-input'
               .input-group-append
-                = submit_tag "Send", class: 'btn btn-primary chat-input'
+                =<> submit_tag "Send", class: 'btn btn-primary chat-input'
 
 javascript:
   var tag = document.createElement('script');
