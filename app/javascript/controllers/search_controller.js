@@ -49,7 +49,7 @@ export default class extends Controller {
 
   resultTemplate(result) {
     return `<div>
-    <img src="${result.thumbnail_url}" class='d-inline-block' width="80">${result.title} <small> - ${result.channel_title} ${result.published_at}</small>
+    <img src="${result.thumbnail_url}" class='d-inline-block' width="80">${result.title} <small> ${result.runtime}</small>
     <button data-action="search#addToList" 
             data-id="${result.id}" 
             data-title="${result.title}"
