@@ -1,7 +1,7 @@
 import { Controller } from 'stimulus';
 export default class extends Controller {
   nextSong = null
-  static targets = ["results"]
+  static targets = ["results", 'singer', 'singerWrap']
 
   connect() {
     console.log("hello from playlist controller")
@@ -74,7 +74,10 @@ export default class extends Controller {
       player.loadVideoById(this.nextSong['video_id'])
       player.playVideo()
       this.removeID(this.nextSong['id'])
+      this.singerWrapTarget.removeClass('d-none')
+      this.singerTarget.innerHTML = ` ${this.nextSong['user_name']}`
     } else{
+      this.singerWrapTarget.addClass('d-none')
       console.log('no next song, no next')
     }
   }

@@ -26,6 +26,10 @@
       .row.h-50
         .col-sm-12
           #playlist.col data-controller='playlist' style="overflow-y: scroll"
+            h1 data-target='playlist.singerWrap'
+              | Current Singer:
+              span data-target='playlist.singer'
+              | Jeremiah
             h4
               | Playlist
               =<> button_tag type: 'button', class: "btn btn-primary", data: {action: "playlist#play"}
@@ -52,7 +56,7 @@
                       .text-right
                         small
                           = message.created_at
-          = form_with(url: "#", method: :get, data: {action: "submit->chat#submit"}) do |f|
+          = form_with(url: "/", method: :get, data: {action: "submit->chat#submit"}) do |f|
             .input-group.mb-3
               =<> text_field_tag :message, nil, class: 'chat-input'
               .input-group-append
