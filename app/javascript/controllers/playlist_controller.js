@@ -73,11 +73,11 @@ export default class extends Controller {
       console.log(this.nextSong)
       player.loadVideoById(this.nextSong['video_id'])
       player.playVideo()
-      this.removeID(this.nextSong['id'])
-      this.singerWrapTarget.removeClass('d-none')
+      this.singerWrapTarget.classList.remove('d-none')
       this.singerTarget.innerHTML = ` ${this.nextSong['user_name']}`
+      this.removeID(this.nextSong['id'])
     } else{
-      this.singerWrapTarget.addClass('d-none')
+      this.singerWrapTarget.classList.add('d-none')
       console.log('no next song, no next')
     }
   }
