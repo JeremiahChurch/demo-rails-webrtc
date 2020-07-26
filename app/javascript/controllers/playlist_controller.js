@@ -1,12 +1,13 @@
 import { Controller } from 'stimulus';
 export default class extends Controller {
-  player
+  nextSong = null
   static targets = ["results"]
 
   connect() {
     console.log("hello from playlist controller")
     this.element[this.identifier] = this // reference the stim controller https://leastbad.com/stimulus-power-move
     this.getPlaylist()
+    this.next();
   }
 
   getPlaylist() {
@@ -14,6 +15,9 @@ export default class extends Controller {
       headers: {accept: 'application/json'}
     }).then((response) => response.json())
       .then(data => {
+        if (data[0]) {
+          this.nextSong = data[0]
+        }
         var resultHTML = "";
         var resultArray = Object.values(data)
         resultArray.forEach(result => {
@@ -66,21 +70,19 @@ export default class extends Controller {
   }
 
   next() {
-    fetch('playlists', {
-      headers: {accept: 'application/json'}
-    }).then((response) => response.json())
-      .then(data => {
-        const firstVideo = data[0]
-        console.log(firstVideo)
-        player.loadVideoById(firstVideo['video_id'])
-        player.playVideo()
-        this.removeID(firstVideo['id'])
-      });
+    if (this.nextSong && player) {
+      console.log(this.nextSong)
+      player.loadVideoById(this.nextSong['video_id'])
+      player.playVideo()
+      this.removeID(this.nextSong['id'])
+    } else{
+      console.log('no next song, no next')
+    }
   }
 
   resultTemplate(result) {
     return `<div>
-    <img src="${result.thumbnail_url}" class='d-inline-block'><h4>${result.title} <small> - ${result.user_name} ${result.runtime}</small></h4>
+    <img src="${result.thumbnail_url}" class='d-inline-block' width="80">${result.title} <small> - ${result.user_name} ${result.runtime}</small>
     <button data-action="playlist#remove" data-id="${result.id}" data-disable-with="Working">Remove</button>
     </div>`
   }
