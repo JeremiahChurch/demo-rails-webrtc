@@ -1,7 +1,7 @@
 import { Controller } from 'stimulus';
 export default class extends Controller {
   player
-  static targets = ["results", 'localVideo', 'youtube']
+  static targets = ["results"]
 
   connect() {
     console.log("hello from playlist controller")

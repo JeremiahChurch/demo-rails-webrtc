@@ -4,13 +4,13 @@
       .row.h-75
         .col-sm-12
           /! Button for information
-          iframe frameborder='0' data-target='playlist.youtube' id='youtube' src="https://www.youtube.com/embed/Sw-H1zXMfEM?enablejsapi=1&autoplay=1"
+          iframe frameborder='0' id='youtube' src="https://www.youtube.com/embed/Sw-H1zXMfEM?enablejsapi=1&autoplay=1"
       .row.h-25
         .col-sm-12
           /! Button for information
             /.col.bg-primary.text-white.text-center.mb-4 data-target='room.videoName'
               | Local Video
-          video data-target="room.main playlist.localVideo" autoplay muted playsinline
+          video[data-target="room.main" autoplay muted playsinline]
           = ' '
           video[data-target="room.remote" autoplay playsinline]
     .col-sm-6.h-100
