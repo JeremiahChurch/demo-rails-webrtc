@@ -1,36 +1,49 @@
-.container.mt-4 data-controller="room"
-  .row
-    .col.d-flex.flex-column.align-items-center
-      .col.bg-primary.text-white.text-center.mb-4 data-target='room.videoName'
-        | Local Video
-      video height="240" data-target="room.main playlist.localVideo" autoplay muted playsinline
-    .col.d-flex.flex-column.align-items-center
-      .col.bg-dark.text-white.text-center.mb-4
-        | Remote Video
-      video[height="240" data-target="room.remote" autoplay playsinline]
-  /.row.mt-4
-    .col
-      button.btn.btn-light[data-action="room#getUserMedia"]
-        | Get Video
-      button.btn.btn-light.ml-4[data-action="room#joinRoom"]
-        | Join Room
+#mmenu_screen.container-fluid.main_container.text-white.d-flex data-controller="room"
+  .row.flex-fill
+    .col-sm-6.mmenu_screen--direktaction.bg-faded.flex-fill
+      .row.h-75
+        .col-sm-12
+          /! Button for information
+          iframe frameborder='0' data-target='playlist.youtube' id='youtube' src="https://www.youtube.com/embed/Sw-H1zXMfEM?enablejsapi=1&autoplay=1"
+      .row.h-25
+        .col-sm-12
+          /! Button for information
+            /.col.bg-primary.text-white.text-center.mb-4 data-target='room.videoName'
+              | Local Video
+          video data-target="room.main playlist.localVideo" autoplay muted playsinline
+          = ' '
+          video[data-target="room.remote" autoplay playsinline]
+    .col-sm-6.h-100
+      .row.h-25
+        .col-sm-12
+          .col.justify-content-center data-controller='search'
+            = form_with(url: "/", method: :get, data: {action: "submit->search#submit"}) do |f|
+              = label_tag(:q, "Search for Video")
+              = text_field_tag :q, params[:q], data: {target: "search.query"}
+              = submit_tag("Search", class: "btn btn-primary")
+            #search-results data-target='search.results'
+      .row.h-50
+        .col-sm-12
+          #playlist.col data-controller='playlist' style="overflow-y: scroll"
+            h4
+              | Playlist
+              =<> button_tag type: 'button', class: "btn btn-primary", data: {action: "playlist#play"}
+                | Play
+              =<> button_tag type: 'button', class: "btn btn-primary", data: {action: "playlist#pause"}
+                | Pause
+            #playlist-results data-target='playlist.results'
+              | Loading
+      .row.h-25
+        .col-sm-12
+          .chat
+            /- @room_messages.each do |room_message|
+              = room_message
+          = form_with(url: "#", method: :get, data: {action: "submit->chat#submit"}) do |f|
+            .input-group.mb-3
+              = text_field_tag :message, nil, class: 'chat-input'
+              .input-group-append
+                = submit_tag "Send", class: 'btn btn-primary chat-input'
 
-  .row
-    #playlist.col data-controller='playlist'
-      iframe.d-none width='640' height='390' frameborder='0' data-target='playlist.youtube' id='youtube'
-      h4 Playlist
-      =<> button_tag type: 'button', class: "btn btn-primary", data: {action: "playlist#play"}
-        | Play
-      =<> button_tag type: 'button', class: "btn btn-primary", data: {action: "playlist#pause"}
-        | Pause
-      #playlist-results data-target='playlist.results'
-        | Loading
-    .col.justify-content-center data-controller='search'
-      = form_with(url: "/", method: :get, data: {action: "submit->search#submit"}) do |f|
-        = label_tag(:q, "Search for Video")
-        = text_field_tag :q, params[:q], data: {target: "search.query"}
-        = submit_tag("Search", class: "btn btn-primary")
-      #search-results data-target='search.results'
 javascript:
   var tag = document.createElement('script');
   tag.id = 'iframe-demo';

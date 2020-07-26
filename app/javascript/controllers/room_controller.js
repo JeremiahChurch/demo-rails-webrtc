@@ -3,7 +3,7 @@ import createDemoChannel from "../channels/demo_channel"
 import Connection from "./demo_connection"
 
 export default class extends Controller {
-  static targets = [ "main", "remote", 'videoName']
+  static targets = [ "main", "remote"] // 'videoName'
 
   constructor(props) {
     super(props)
@@ -17,7 +17,7 @@ export default class extends Controller {
     this.element[this.identifier] = this // reference the stim controller https://leastbad.com/stimulus-power-move
 
     console.log(getCookie('name'))
-    this.videoNameTarget.innerHTML = `You (${getCookie('name')})`
+    //this.videoNameTarget.innerHTML = `You (${getCookie('name')})`
 
     this.getUserMedia()
   }

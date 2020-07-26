@@ -1,7 +1,7 @@
 class VideoSearchController < ApplicationController
   def index
     v = Yt::Collections::Videos.new
-    @videos = v.where(q: query + ' karaoke', order: 'relevance').take(20)
+    @videos = v.where(q: query + ' karaoke', order: 'relevance', embeddable: true).take(20)
   end
 
   private
