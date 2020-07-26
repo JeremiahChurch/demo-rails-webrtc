@@ -1,0 +1,12 @@
+/p#notice = notice
+
+p
+  strong User name:
+  = @chat_message.user_name
+p
+  strong Message:
+  = @chat_message.message
+
+=> link_to 'Edit', edit_chat_message_path(@chat_message)
+'|
+=< link_to 'Back', chat_messages_path

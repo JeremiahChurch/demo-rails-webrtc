@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   get 'room', to: "pages#room"
   resources :video_search, only: :index
   resources :playlists
+  resources :chat_messages
 end
